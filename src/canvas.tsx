@@ -1,23 +1,30 @@
+import styles from "./hexagone.module.css"
 import { Hexagone } from "./hexagone";
 
 export function Canvas() {
-    let lineOne = [];
-    let lineTwo = [];
-    let lineThree = [];
+    const linesNb = 25;
+    const hexagonePerLine = 30;
 
-    let i = 0;
-    while (i < 5) {
-        lineOne.push(<Hexagone x={i * 100} y={0} />)
-        lineTwo.push(<Hexagone x={i * 100 + 50} y={70} />)
-        lineThree.push(<Hexagone x={i * 100} y={140} />)
-        i++;
+    const hexagones = [];
+
+    let iLine = 0;
+    while (iLine < linesNb) {
+        let iHexagone = 0;
+        while (iHexagone < hexagonePerLine) {
+            if (iLine % 2 === 0) {
+                hexagones.push(<Hexagone x={iHexagone * 100 + 50} y={iLine * 70} />);
+            } else {
+                hexagones.push(<Hexagone x={iHexagone * 100} y={iLine * 70} />);
+            }
+            iHexagone++;
+        }
+        iLine++;
+        iHexagone = 0;
     }
 
     return (
-        <svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
-            {lineOne}
-            {lineTwo}
-            {lineThree}
+        <svg xmlns="http://www.w3.org/2000/svg" class={styles.canvas}>
+            {hexagones}
         </svg>
     )
 }
