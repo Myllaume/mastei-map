@@ -1,7 +1,7 @@
-import { useState } from 'preact/hooks'
+import { Canvas } from "./canvas";
 
 export function App() {
   return (
-    <></>
+    <Canvas />
   )
 }
