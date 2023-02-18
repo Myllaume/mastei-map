@@ -1,7 +1,14 @@
-import styles from "./hexagone.module.css"
+import styles from "./canvas.module.css";
 import { Hexagone } from "./hexagone";
+import { ViewBox } from "./types";
 
-export function Canvas() {
+interface CanvasProps {
+    viewBox?: ViewBox;
+}
+
+export function Canvas(props: CanvasProps) {
+    const { viewBox } = props;
+
     const linesNb = 25;
     const hexagonePerLine = 30;
 
@@ -23,7 +30,11 @@ export function Canvas() {
     }
 
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" class={styles.canvas}>
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class={styles.canvas}
+            viewBox={viewBox?.join(' ')}
+        >
             {hexagones}
         </svg>
     )

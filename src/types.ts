@@ -1,0 +1,1 @@
+export type ViewBox = [number, number, number, number];
