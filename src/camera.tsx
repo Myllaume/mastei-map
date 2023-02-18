@@ -10,7 +10,7 @@ interface ZoomProps {
     setViewBox: (v: ViewBox) => void;
 }
 
-export function Zoom(props: ZoomProps) {
+export function Camera(props: ZoomProps) {
     const { children, setViewBox } = props;
 
     const zoomMax = 10, zoomMin = 1;
@@ -29,8 +29,8 @@ export function Zoom(props: ZoomProps) {
             .extent([[0, 0], [width, height]])
             .scaleExtent([zoomMin, zoomMax])
             .on('zoom', (e) => {
-                const { x, y, k } = e.transform;
-                setViewBox([-x, -y, width / k, height / k]);
+                const { x, y } = e.transform;
+                setViewBox([-x, -y, width, height]);
             });
 
         zoomTarget.call(zoomEngine as any)
